@@ -1,5 +1,6 @@
 package com.edg.Backendedg.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -21,27 +23,35 @@ public class ModelTema {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 1, max = 50, message="Limite de 50 Caracteres")
 	private String area;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 1, max = 50, message="Limite de 50 Caracteres")
 	private String tipo_de_acao;
 	
-	@Temporal(TemporalType.TIMESTAMP) 
-	private Date data;
+	@NotBlank 
+	private LocalDate data;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 1, max = 50, message="Limite de 50 Caracteres")
 	private String publico;
 	
-	@NotNull
+	@NotBlank
 	@Size(min = 1, max = 50, message="Limite de 50 Caracteres")
 	private String cidade;
 
 	public Long getId() {
 		return id;
+	}
+
+	public LocalDate getData() {
+		return data;
+	}
+
+	public void setData(LocalDate data) {
+		this.data = data;
 	}
 
 	public void setId(Long id) {
@@ -62,14 +72,6 @@ public class ModelTema {
 
 	public void setTipo_de_acao(String tipo_de_acao) {
 		this.tipo_de_acao = tipo_de_acao;
-	}
-
-	public Date getData() {
-		return data;
-	}
-
-	public void setData(Date data) {
-		this.data = data;
 	}
 
 	public String getPublico() {
