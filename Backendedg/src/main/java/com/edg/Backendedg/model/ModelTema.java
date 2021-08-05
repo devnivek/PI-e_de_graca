@@ -1,18 +1,19 @@
 package com.edg.Backendedg.model;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "tb_tema")
@@ -29,7 +30,7 @@ public class ModelTema {
 	
 	@NotBlank
 	@Size(min = 1, max = 50, message="Limite de 50 Caracteres")
-	private String tipo_de_acao;
+	private String tipoDeAcao;
 	
 	@NotBlank 
 	private LocalDate data;
@@ -41,6 +42,10 @@ public class ModelTema {
 	@NotBlank
 	@Size(min = 1, max = 50, message="Limite de 50 Caracteres")
 	private String cidade;
+	
+	@OneToMany(mappedBy = "tema", cascade = CascadeType.REMOVE)
+	@JsonIgnoreProperties("tema")
+	private List<Postagem> postagem;
 
 	public Long getId() {
 		return id;
@@ -66,12 +71,20 @@ public class ModelTema {
 		this.area = area;
 	}
 
-	public String getTipo_de_acao() {
-		return tipo_de_acao;
+	public String getTipoDeAcao() {
+		return tipoDeAcao;
 	}
 
-	public void setTipo_de_acao(String tipo_de_acao) {
-		this.tipo_de_acao = tipo_de_acao;
+	public void setTipoDeAcao(String tipoDeAcao) {
+		this.tipoDeAcao = tipoDeAcao;
+	}
+
+	public List<Postagem> getPostagem() {
+		return postagem;
+	}
+
+	public void setPostagem(List<Postagem> postagem) {
+		this.postagem = postagem;
 	}
 
 	public String getPublico() {

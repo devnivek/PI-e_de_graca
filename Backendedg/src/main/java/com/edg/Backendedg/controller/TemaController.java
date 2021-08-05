@@ -20,7 +20,7 @@ import com.edg.Backendedg.model.ModelTema;
 import com.edg.Backendedg.repository.TemaRepository;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RequestMapping("/tema")
 public class TemaController {
 		
@@ -42,9 +42,9 @@ public class TemaController {
 			return ResponseEntity.ok(repository.findAllByAreaContainingIgnoreCase(area));
 		}
 		
-		@GetMapping("/tipo_de_acao/{tipo_de_acao}")
-		public ResponseEntity<List<ModelTema>> getByTipo(@PathVariable String tipo_de_acao){
-			return ResponseEntity.ok(repository.findAllByAreaContainingIgnoreCase(tipo_de_acao));
+		@GetMapping("/tipo-de-acao/{tipoDeAcao}")
+		public ResponseEntity<List<ModelTema>> getByTipo(@PathVariable String tipoDeAcao){
+			return ResponseEntity.ok(repository.findAllByTipoDeAcaoContainingIgnoreCase(tipoDeAcao));
 		}
 		
 		@GetMapping("/publico/{publico}")
@@ -59,7 +59,7 @@ public class TemaController {
 		
 		@GetMapping("/data/{data}")
 		public ResponseEntity<List<ModelTema>> getByArea(@PathVariable LocalDate data){
-			return ResponseEntity.ok(repository.findAllByDataContainingIgnoreCase(data));
+			return ResponseEntity.ok(repository.findAllByData(data));
 		}
 		
 		@PostMapping
