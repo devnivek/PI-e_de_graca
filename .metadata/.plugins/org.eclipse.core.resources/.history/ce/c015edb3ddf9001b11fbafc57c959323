@@ -1,0 +1,5 @@
+package com.edg.Backendedg.security;
+
+public class UserDetailsImpl {
+
+}

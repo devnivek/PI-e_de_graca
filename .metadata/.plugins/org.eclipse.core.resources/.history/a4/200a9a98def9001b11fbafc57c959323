@@ -1,0 +1,6 @@
+package com.edg.Backendedg.security;
+
+@Service
+public class UserDetailService {
+
+}

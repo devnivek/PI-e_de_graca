@@ -27,7 +27,7 @@ public class Postagem {
 	@Size(min = 1, max = 255, message="Limite de 255 Caracteres")
 	private String descricao;
 	
-	private int like;
+	private int curtir;
 	
 	@NotBlank
 	@Size(min = 1, max = 350, message="Limite de 350 Caracteres")
@@ -39,17 +39,17 @@ public class Postagem {
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
-	private ModelTema tema;
+	private Tema tema;
 	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem")
 	private Usuario usuario;
 
-	public ModelTema getTema() {
+	public Tema getTema() {
 		return tema;
 	}
 
-	public void setTema(ModelTema tema) {
+	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
 
@@ -86,11 +86,11 @@ public class Postagem {
 	}
 
 	public int getLike() {
-		return like;
+		return curtir;
 	}
 
 	public void setLike(int like) {
-		this.like = like;
+		this.curtir = like;
 	}
 
 	public String getMidia() {

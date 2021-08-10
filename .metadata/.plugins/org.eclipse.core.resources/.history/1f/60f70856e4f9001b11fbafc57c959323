@@ -1,0 +1,26 @@
+package com.edg.Backendedg.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
+
+import com.edg.Backendedg.model.Usuario;
+import com.edg.Backendedg.repository.UsuarioRepository;
+
+@Service
+public class UsuarioService {
+	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
+	public Optional <Usuario> cadastrarUsuario (Usuario usuario){
+		if(usuarioRepository.findByEmail(usuario.getEmail()).isPresent())
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "E-mail já cadastrado", null);
+		
+		
+	}
+
+}
